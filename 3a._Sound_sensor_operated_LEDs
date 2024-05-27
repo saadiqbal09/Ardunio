@@ -1,0 +1,34 @@
+// Saad Iqbal Chavhan Program of 3a._Sound_sensor_operated_LEDs
+///Turns on the LED according to sound level recorded by the sound or microphone sensor.
+int led1 = 2;
+int led2 = 3;
+const int sensorPin = A0; // input pin for the sensor
+int sensorval = 0; // variable for the value coming from the sensor
+// the setup routine runs once when you press reset:
+void setup() { // initialize the digital pin as an output.
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  
+  pinMode(sensorPin, INPUT); // initialize sensor as input
+  Serial.begin(9600); // initialize serial communication with computer
+}
+void loop()
+{
+  sensorval = analogRead(sensorPin)* 30; // read the value from the sensor , multiply by 60 for a sensitive calibration
+  Serial.println(sensorval); // send it to the computer's serial port screen
+  if (sensorval > 950)
+  { digitalWrite(led1, LOW);
+  }
+  else
+  {
+    digitalWrite(led1, HIGH);
+  }
+  if (sensorval > 1000)
+  { digitalWrite(led2, LOW);
+  } 
+  else {
+    digitalWrite(led2, HIGH);
+  }
+  
+ delay(50);
+}
