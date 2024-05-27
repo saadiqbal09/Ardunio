@@ -1,0 +1,33 @@
+// Saad Iqbal Chavhan Program of 2._LDR_operated_LED_Buzzer
+// Arduino's pin connected to OUTPUT of Light Sensor 
+const int LIGHT_SENSOR_PIN = 8;
+const int LED_PIN = 2;
+const int BUZZER_PIN=3; 
+
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  // initialize the Arduino's pin as aninput
+  pinMode(LIGHT_SENSOR_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+   pinMode(BUZZER_PIN, OUTPUT);
+}
+
+void loop() {
+  // read the state of the the input pin:
+  int state = digitalRead(LIGHT_SENSOR_PIN);
+
+  if (state == LOW)
+  {
+    Serial.println("The light  is present");
+    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(BUZZER_PIN, HIGH);
+  }
+  else
+  {
+    Serial.println("The light is NOT present");
+    digitalWrite(LED_PIN, LOW);
+    digitalWrite(BUZZER_PIN, LOW);
+  }
+  delay(100);
+}
